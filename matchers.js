@@ -24,16 +24,17 @@ beforeEach(function() {
       return this.actual.isDefaultPrevented();                    
     },
 
-    toBeHidden: function() {
-      return this.actual.is(":hidden");             
+    toNotBeShown: function() {
+      var val = this.actual.is(":hidden") ||
+              jasmine.JQuery.matchersClass["toHaveAttr"]('display', 'none');
+      return val;
     },
 
-    toBeVisible: function() {
-      return this.actual.is(":visible");             
-    },
-
-    toHaveClass: function(className) {
-      return this.actual.hasClass(className);             
+    toBeShown: function() {
+      var val = this.actual.is(":visible") ||
+                    !jasmine.JQuery.matchersClass["toHaveAttr"]('display', 'none');
+      return val;
     }
+
   });
 });
