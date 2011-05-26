@@ -34,6 +34,10 @@ beforeEach(function() {
       var val = this.actual.is(":visible") ||
                     !jasmine.JQuery.matchersClass["toHaveAttr"]('display', 'none');
       return val;
+    },
+
+    toBeInDOM: function() {
+        return this.actual.parent().size() > 0;
     }
 
   });
